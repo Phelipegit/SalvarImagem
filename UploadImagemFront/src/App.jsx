@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 
-const BACK_URL = "https://salvarimagem.onrender.com/addImage";
-const GET_URL = "https://salvarimagem.onrender.com/devolvertudo";
+const BACK_URL = "https://salvarimagem.onrender.com/api/addImage";
+const GET_URL = "https://salvarimagem.onrender.com/api/devolvertudo";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 

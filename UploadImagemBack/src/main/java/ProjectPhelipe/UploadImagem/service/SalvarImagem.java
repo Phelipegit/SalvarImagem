@@ -15,15 +15,16 @@ public class SalvarImagem {
 
     private final ChamarRequestApi chamarRequestApi;
     private final ImagemRepository imagemRepository;
+    private final ObjectMapper objectMapper;
 
-    public SalvarImagem(ChamarRequestApi chamarRequestApi,ImagemRepository imagemRepository) {
+    public SalvarImagem(ChamarRequestApi chamarRequestApi,ImagemRepository imagemRepository,ObjectMapper objectMapper) {
         this.chamarRequestApi = chamarRequestApi;
         this.imagemRepository = imagemRepository;
+        this.objectMapper = objectMapper;
     }
 
     public ImagemResponse salvarImagem(ImagemRequest request) throws IOException, InterruptedException {
 
-        ObjectMapper objectMapper = new ObjectMapper();
 
         ObterUrlRecord record = objectMapper.readValue(chamarRequestApi.chamarApi(request.getImagemCodificada()),ObterUrlRecord.class);
 

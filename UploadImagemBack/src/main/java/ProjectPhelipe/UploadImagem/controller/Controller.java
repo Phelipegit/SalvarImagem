@@ -3,6 +3,7 @@ package ProjectPhelipe.UploadImagem.controller;
 import ProjectPhelipe.UploadImagem.model.ImagemRequest;
 import ProjectPhelipe.UploadImagem.model.ImagemResponse;
 import ProjectPhelipe.UploadImagem.model.ReturnDB;
+import ProjectPhelipe.UploadImagem.service.DeletarTodasLinhasDB;
 import ProjectPhelipe.UploadImagem.service.DevolverImagensDB;
 import ProjectPhelipe.UploadImagem.service.SalvarImagem;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +19,12 @@ public class Controller {
 
     private final DevolverImagensDB devolverImagensDB;
 
-    public Controller(SalvarImagem salvarImagem, DevolverImagensDB devolverImagensDB) {
+    private final DeletarTodasLinhasDB deletarTodasLinhasDB;
+
+    public Controller(SalvarImagem salvarImagem, DevolverImagensDB devolverImagensDB, DeletarTodasLinhasDB deletarTodasLinhasDB) {
         this.salvarImagem = salvarImagem;
         this.devolverImagensDB = devolverImagensDB;
+        this.deletarTodasLinhasDB = deletarTodasLinhasDB;
     }
 
     @PostMapping("/addImage")
@@ -31,5 +35,10 @@ public class Controller {
     @GetMapping("/devolvertudo")
     public List<ReturnDB> devolverTudo() {
         return devolverImagensDB.devolverImagensDB();
+    }
+
+    @DeleteMapping("/apagartudo")
+    public void deletarTudo() {
+        deletarTodasLinhasDB.deletarTodasLinhas();
     }
 }

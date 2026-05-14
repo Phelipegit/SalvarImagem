@@ -5,9 +5,11 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 
 @Service
 public class ChamarRequestApi {
@@ -20,7 +22,8 @@ public class ChamarRequestApi {
 
     public String chamarApi(String imagem64) throws IOException, InterruptedException {
 
-        String body = "file=" + imagem64 + "&upload_preset=" + uploadPreset;
+        String body = "file=" + URLEncoder.encode(imagem64, StandardCharsets.UTF_8)
+                + "&upload_preset=" + URLEncoder.encode(uploadPreset, StandardCharsets.UTF_8);
         HttpClient httpClient = HttpClient.newBuilder().build();
 
 

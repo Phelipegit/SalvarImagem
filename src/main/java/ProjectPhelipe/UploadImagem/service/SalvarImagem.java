@@ -1,13 +1,16 @@
 package ProjectPhelipe.UploadImagem.service;
 
 import ProjectPhelipe.UploadImagem.model.ImagemRequest;
+import ProjectPhelipe.UploadImagem.model.ImagemResponse;
 import ProjectPhelipe.UploadImagem.model.ObterUrlRecord;
 import ProjectPhelipe.UploadImagem.repository.ImagemEntity;
 import ProjectPhelipe.UploadImagem.repository.ImagemRepository;
+import org.springframework.stereotype.Service;
 import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
+@Service
 public class SalvarImagem {
 
     private final ImagemRepository imagemRepository;
@@ -16,7 +19,7 @@ public class SalvarImagem {
         this.imagemRepository = imagemRepository;
     }
 
-    public void salvarImagem(ImagemRequest request) throws IOException, InterruptedException {
+    public ImagemResponse salvarImagem(ImagemRequest request) throws IOException, InterruptedException {
         ChamarRequestApi chamarRequestApi = new ChamarRequestApi();
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -27,6 +30,6 @@ public class SalvarImagem {
 
         imagemRepository.save(imagemEntity);
 
-
+        return new ImagemResponse(true,"Imagem enviada com sucesso");
     }
 }

@@ -99,6 +99,7 @@ export default function UploadImagem() {
       <div style={styles.bg3} />
 
       <div style={styles.card}>
+        <p style={{color:'red'}}>vou arrumar os bugs amanha</p>
         <div style={styles.badge}>Upload</div>
         <h1 style={styles.title}>Enviar imagem</h1>
         <p style={styles.sub}>JPG, PNG ou WEBP · máx. 10MB</p>

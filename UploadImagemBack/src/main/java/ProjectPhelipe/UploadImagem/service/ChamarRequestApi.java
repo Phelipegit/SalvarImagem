@@ -22,7 +22,9 @@ public class ChamarRequestApi {
 
     public String chamarApi(String imagem64) throws IOException, InterruptedException {
 
-        String body = "file=" + URLEncoder.encode(imagem64, StandardCharsets.UTF_8)
+        String imagemCompleta = "data:image/png;base64," + imagem64;
+
+        String body = "file=" + URLEncoder.encode(imagemCompleta, StandardCharsets.UTF_8)
                 + "&upload_preset=" + URLEncoder.encode(uploadPreset, StandardCharsets.UTF_8);
         HttpClient httpClient = HttpClient.newBuilder().build();
 

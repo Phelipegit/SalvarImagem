@@ -9,7 +9,10 @@ export default function UploadImagem() {
   const [imagem, setImagem] = useState(null);
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [resultado, setResultado] = useState("");
+
+  // AGORA O RESULTADO É SÓ TRUE/FALSE
+  const [resultado, setResultado] = useState(false);
+
   const [erro, setErro] = useState("");
   const [drag, setDrag] = useState(false);
   const [galeria, setGaleria] = useState([]);
@@ -50,7 +53,7 @@ export default function UploadImagem() {
     if (!file) return;
 
     setErro("");
-    setResultado("");
+    setResultado(false);
 
     if (!ALLOWED_TYPES.includes(file.type)) {
       setErro("Formato não permitido. Use JPG, PNG ou WEBP.");
@@ -115,7 +118,7 @@ export default function UploadImagem() {
 
     setLoading(true);
     setErro("");
-    setResultado("");
+    setResultado(false);
 
     try {
       const res = await fetch(BACK_URL, {
@@ -130,25 +133,25 @@ export default function UploadImagem() {
 
       const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data?.message || "Erro ao enviar imagem.");
+      // SE DEU ERRO NO BACK
+      if (!res.ok || data?.success === false) {
+        throw new Error(
+          data?.message || "Erro ao enviar imagem."
+        );
       }
 
-      const url =
-        typeof data === "string"
-          ? data
-          : data?.secure_url || data?.url || "";
+      // SUCESSO
+      setResultado(true);
 
-      if (!url) {
-        throw new Error("URL da imagem não encontrada.");
-      }
-
-      setResultado(url);
-
+      // REFRESH AUTOMÁTICO DA GALERIA
       await buscarImagens();
+
     } catch (e) {
       console.error(e);
-      setErro(e.message || "Erro inesperado.");
+
+      setErro(
+        e?.message || "Erro inesperado ao enviar imagem."
+      );
     } finally {
       setLoading(false);
     }
@@ -157,7 +160,7 @@ export default function UploadImagem() {
   const limpar = () => {
     setImagem(null);
     setPreview(null);
-    setResultado("");
+    setResultado(false);
     setErro("");
 
     if (inputRef.current) {
@@ -240,24 +243,7 @@ export default function UploadImagem() {
 
         {!!resultado && (
           <div style={styles.successBox}>
-            <p
-              style={{
-                marginBottom: 8,
-                fontSize: 12,
-                opacity: 0.7,
-              }}
-            >
-              URL da imagem
-            </p>
-
-            <a
-              href={resultado}
-              target="_blank"
-              rel="noreferrer"
-              style={styles.urlLink}
-            >
-              {resultado}
-            </a>
+            Imagem enviada com sucesso.
           </div>
         )}
 
@@ -488,12 +474,7 @@ const styles = {
     padding: 12,
     borderRadius: 12,
     marginBottom: 16,
-    overflowWrap: "break-word",
-  },
-
-  urlLink: {
-    color: "#7dffb1",
-    fontSize: 12,
+    textAlign: "center",
   },
 
   btn: {

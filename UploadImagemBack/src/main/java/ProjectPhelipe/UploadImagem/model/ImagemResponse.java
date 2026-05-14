@@ -1,5 +1,8 @@
 package ProjectPhelipe.UploadImagem.model;
 
+import lombok.Getter;
+
+@Getter
 public class ImagemResponse {
 
     private boolean success;

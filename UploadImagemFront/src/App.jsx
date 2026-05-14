@@ -176,7 +176,7 @@ export default function UploadImagem() {
 
       <div style={styles.card}>
         <p style={{ color: "#ff6b6b", marginBottom: 16 }}>
-          vou arrumar os bugs amanhã six seven
+          tem q esperar uns 3/5 min pro backend ligar
         </p>
 
         <div style={styles.badge}>Upload</div>

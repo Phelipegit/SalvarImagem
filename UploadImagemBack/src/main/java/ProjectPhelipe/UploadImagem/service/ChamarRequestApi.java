@@ -35,6 +35,7 @@ public class ChamarRequestApi {
 
         HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
+        System.out.println(response.body());
         return response.body();
     }
 }

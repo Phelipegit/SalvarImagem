@@ -27,6 +27,7 @@ public class SalvarImagem {
 
         ObterUrlRecord record = objectMapper.readValue(chamarRequestApi.chamarApi(request.getImagemCodificada()),ObterUrlRecord.class);
 
+        System.out.println(record.secure_url());
         ImagemEntity imagemEntity = new ImagemEntity(record.secure_url());
 
         imagemRepository.save(imagemEntity);

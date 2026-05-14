@@ -1,5 +1,6 @@
 package ProjectPhelipe.UploadImagem.service;
 
+import ProjectPhelipe.UploadImagem.model.ReturnDB;
 import ProjectPhelipe.UploadImagem.repository.ImagemEntity;
 import ProjectPhelipe.UploadImagem.repository.ImagemRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class DevolverImagensDB {
         this.imagemRepository = imagemRepository;
     }
 
-    public List<ImagemEntity> devolverImagensDB() {
-        return imagemRepository.findAll();
+    public List<ReturnDB> devolverImagensDB() {
+        return imagemRepository.findAll().stream().map(element -> new ReturnDB(element.getUrl(),element.getLocalDateTime())).toList();
     }
 }

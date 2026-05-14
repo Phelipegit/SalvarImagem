@@ -2,7 +2,7 @@ package ProjectPhelipe.UploadImagem.controller;
 
 import ProjectPhelipe.UploadImagem.model.ImagemRequest;
 import ProjectPhelipe.UploadImagem.model.ImagemResponse;
-import ProjectPhelipe.UploadImagem.repository.ImagemEntity;
+import ProjectPhelipe.UploadImagem.model.ReturnDB;
 import ProjectPhelipe.UploadImagem.service.DevolverImagensDB;
 import ProjectPhelipe.UploadImagem.service.SalvarImagem;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ public class Controller {
     }
 
     @GetMapping("/devolvertudo")
-    public List<ImagemEntity> devolverTudo() {
+    public List<ReturnDB> devolverTudo() {
         return devolverImagensDB.devolverImagensDB();
     }
 }

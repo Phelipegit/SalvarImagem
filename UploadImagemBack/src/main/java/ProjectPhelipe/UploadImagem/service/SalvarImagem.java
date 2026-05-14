@@ -13,14 +13,15 @@ import java.io.IOException;
 @Service
 public class SalvarImagem {
 
+    private final ChamarRequestApi chamarRequestApi;
     private final ImagemRepository imagemRepository;
 
-    public SalvarImagem(ImagemRepository imagemRepository) {
+    public SalvarImagem(ChamarRequestApi chamarRequestApi,ImagemRepository imagemRepository) {
+        this.chamarRequestApi = chamarRequestApi;
         this.imagemRepository = imagemRepository;
     }
 
     public ImagemResponse salvarImagem(ImagemRequest request) throws IOException, InterruptedException {
-        ChamarRequestApi chamarRequestApi = new ChamarRequestApi();
 
         ObjectMapper objectMapper = new ObjectMapper();
 

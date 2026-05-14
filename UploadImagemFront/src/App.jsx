@@ -42,8 +42,9 @@ export default function UploadImagem() {
 
     const reader = new FileReader();
     reader.onload = (e) => {
+      const base64Puro = e.target.result.split(",")[1];
       setPreview(e.target.result);
-      setImagem(e.target.result);
+      setImagem(base64Puro);
     };
     reader.readAsDataURL(file);
   };

@@ -29,7 +29,7 @@ public class SpringSecurity {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(List.of(
-                "https://phelipesalvarimagem.vercel.app/" // troca pela URL real do seu frontend
+                "https://uploadimagem.vercel.app//" // troca pela URL real do seu frontend
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));

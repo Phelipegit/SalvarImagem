@@ -1,4 +1,4 @@
-package ProjectPhelipe.UploadImagem.Security;
+package ProjectPhelipe.UploadImagem.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
